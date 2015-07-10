@@ -55,6 +55,7 @@ node[:deploy].each do |application, deploy|
   # Pull tagged image
   Chef::Log.info("IMAGE: Pulling #{deploy[:environment_variables][:registry_image]}:#{deploy[:environment_variables][:registry_tag]}")
   docker_image "#{deploy[:environment_variables][:registry_image]}" do
+    cmd_timeout 1000
     tag deploy[:environment_variables][:registry_tag]
   end
 
